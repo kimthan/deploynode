@@ -2,11 +2,8 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const data = require('./Data')
-
-app.use(function(req, res, next){
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-    next()
-})
+const cors = require('cors')
+app.use(cors({origin: 'http://localhost:3000'}));
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.get('/api', (req, res)=>{
